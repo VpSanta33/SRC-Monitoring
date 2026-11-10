@@ -1,0 +1,89 @@
+name: Collect scopes and deploy Pages
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17,47 * * * *"
+  workflow_dispatch:
+
+# Serialize state updates and deployments. Never cancel a run halfway through a checkpoint.
+concurrency:
+  group: public-scope-pages
+  cancel-in-progress: false
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pages: read
+    outputs:
+      collection: ${{ steps.collect.outcome }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v7.0.0
+        with:
+          go-version-file: go.mod
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm --prefix web ci
+      - name: Validate and test
+        run: |
+          node scripts/check-config.mjs
+          go test -race ./...
+          npm --prefix web test
+      - name: Restore durable monitoring baseline
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/prepare-state.sh
+      - name: Collect public scopes and export static JSON
+        id: collect
+        continue-on-error: true
+        run: go run ./cmd/collect -state .state/state -out web/public/data
+      - name: Verify complete export
+        run: |
+          test -s web/public/data/manifest.json
+          test -s .state/state/manifest.json
+      - name: Persist monitoring state
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/push-state.sh
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v6.0.0
+      - name: Build React for the repository subpath
+        env:
+          VITE_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+        run: npm --prefix web run build
+      - uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: web/dist
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy static site
+        id: deployment
+        uses: actions/deploy-pages@v5.0.1
+      - name: Report degraded data collection
+        if: needs.build.outputs.collection == 'failure'
+        run: |
+          echo '::error::A source failed. Pages shows the last valid data and source error; inspect the collection log.'
+          exit 1

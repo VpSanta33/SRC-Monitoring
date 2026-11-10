@@ -1,0 +1,13 @@
+/data/*
+!/data/.gitkeep
+/.state/
+/bin/
+/web/node_modules/
+/web/dist/
+/web/public/data/
+/web/*.tsbuildinfo
+.env
+.DS_Store
+coverage.out
+/docs/overview.jpg
+/docs/overview-v0.jpg

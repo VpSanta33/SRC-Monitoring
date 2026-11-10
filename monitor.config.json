@@ -1,0 +1,7 @@
+{
+  "repository": "VpSanta33/SRC-Monitoring",
+  "workflow": "pages.yml",
+  "schedule": "17,47 * * * *",
+  "timezone": "UTC",
+  "enabled": { "hackerone": true, "bugcrowd": true }
+}
