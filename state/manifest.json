@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "name": "sources-000000.jsonl",
+      "table": "sources",
+      "sha256": "dbc817df729d3f365e75a1a18067c5f55259b60e49d7ef5e7c25863b8014c51f",
+      "rows": 2
+    },
+    {
+      "name": "records-000000.jsonl",
+      "table": "records",
+      "sha256": "ff768d86cc056ba2e832617ef87a75d20d54b0439840b0a0f42f302f9ec03cc4",
+      "rows": 5000
+    },
+    {
+      "name": "records-000001.jsonl",
+      "table": "records",
+      "sha256": "c7a59298739ae8c2604491f461bb9e326665d0586658c590b02cd1b9d081a853",
+      "rows": 5000
+    },
+    {
+      "name": "records-000002.jsonl",
+      "table": "records",
+      "sha256": "447c0da71217a8230c1e01c80a1c13488898db412ba838b855e58d25a67b88d7",
+      "rows": 5000
+    },
+    {
+      "name": "records-000003.jsonl",
+      "table": "records",
+      "sha256": "a7fd00a64c1cf62419024dfe2a7dc1ace58a016cf3a639c4b7f3b9ccbe05625d",
+      "rows": 5000
+    },
+    {
+      "name": "records-000004.jsonl",
+      "table": "records",
+      "sha256": "21755c72cdbb74279211753f60ac5008b9d2c233252b3e542b21eb7da1b64411",
+      "rows": 5000
+    },
+    {
+      "name": "records-000005.jsonl",
+      "table": "records",
+      "sha256": "29d637bdc98773ff94e8f10401719c325023d659a570da85ff21f2af8a5d5b0c",
+      "rows": 5000
+    },
+    {
+      "name": "records-000006.jsonl",
+      "table": "records",
+      "sha256": "dbc3fc04b563a5975b3d9817311991bf14d7497fc6325042cf849256622a7048",
+      "rows": 5000
+    },
+    {
+      "name": "records-000007.jsonl",
+      "table": "records",
+      "sha256": "a324cbb917c15dff623692d826c72366d6697cc9095189f06f19c2677165c33a",
+      "rows": 5000
+    },
+    {
+      "name": "records-000008.jsonl",
+      "table": "records",
+      "sha256": "678de94db382c0804527031cc19b3c40bac8ddaea53e0db8b18849c7b4d672b1",
+      "rows": 5000
+    },
+    {
+      "name": "records-000009.jsonl",
+      "table": "records",
+      "sha256": "5f75164f296d99e820ae2dd99ac5caa325688ebb1a4ce04a6d58f7617625c238",
+      "rows": 5000
+    },
+    {
+      "name": "records-000010.jsonl",
+      "table": "records",
+      "sha256": "4d9f4168928d566e4e67a2795e60b82cd9975886dcc94719cc43ec2d39e7f8bd",
+      "rows": 704
+    },
+    {
+      "name": "changes-000000.jsonl",
+      "table": "changes",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rows": 0
+    },
+    {
+      "name": "runs-000000.jsonl",
+      "table": "runs",
+      "sha256": "92e9ec3b102bf26b1c56ea2d6b2aea252e2890a0ef98fd3dccc210b03a475586",
+      "rows": 2
+    },
+    {
+      "name": "site_metadata-000000.jsonl",
+      "table": "site_metadata",
+      "sha256": "e0c48fd5e4ca30563e7ad1125d82d818db8d5babac5a49d3829437dc16d7aed9",
+      "rows": 1
+    }
+  ]
+}
